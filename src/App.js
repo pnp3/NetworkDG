@@ -1,49 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './App.css';
-import DeviceInfo from './components/DeviceInfo';
-import NetworkStatus from './components/NetworkStatus';
-import PerformanceMetrics from './components/PerformanceMetrics';
 import UptimeMonitor from './components/UptimeMonitor';
+import DeviceInfo from './components/DeviceInfo';
 import ErrorLog from './components/ErrorLog';
+import InternetSpeed from './components/InternetSpeed';
 
 function App() {
-  const [isOnline, setIsOnline] = useState(navigator.onLine);
-  
-  useEffect(() => {
-    // Set up event listeners for online/offline status
-    const handleOnline = () => setIsOnline(true);
-    const handleOffline = () => setIsOnline(false);
-    
-    window.addEventListener('online', handleOnline);
-    window.addEventListener('offline', handleOffline);
-    
-    return () => {
-      window.removeEventListener('online', handleOnline);
-      window.removeEventListener('offline', handleOffline);
-    };
-  }, []);
-
   return (
     <div className="App">
       <header className="App-header">
         <h1>Network Monitoring Dashboard</h1>
-        <div className="connection-status">
-          Status: <span className={isOnline ? 'online' : 'offline'}>
-            {isOnline ? 'Online' : 'Offline'}
-          </span>
-        </div>
+        <p>Real-time system performance and connectivity insights</p>
       </header>
       
-      <main className="dashboard-container">
-        <DeviceInfo />
-        <NetworkStatus />
-        <PerformanceMetrics />
+      <div className="dashboard-grid">
+        <InternetSpeed />
         <UptimeMonitor />
+        <DeviceInfo />
         <ErrorLog />
-      </main>
+      </div>
       
       <footer className="App-footer">
-        <p>Network Monitoring Dashboard - Created by Prince Padi</p>
+        <p>© {new Date().getFullYear()} Network Monitoring Dashboard</p>
       </footer>
     </div>
   );

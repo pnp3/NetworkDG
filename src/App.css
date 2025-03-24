@@ -1,10 +1,16 @@
+/* Modern dashboard styling */
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+}
+
 .App {
   text-align: center;
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  color: white;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .App-logo {
@@ -19,13 +25,24 @@
 }
 
 .App-header {
-  padding: 20px;
-  border-bottom: 1px solid #444;
+  background: linear-gradient(135deg, #2c3e50, #4ca1af);
+  padding: 25px;
+  color: white;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .App-header h1 {
   margin: 0;
-  font-size: 2rem;
+  font-size: 2.2rem;
+  font-weight: 600;
+}
+
+.App-header p {
+  margin: 10px 0 0;
+  opacity: 0.9;
+  font-size: 1.1rem;
 }
 
 .connection-status {
@@ -43,60 +60,243 @@
   font-weight: bold;
 }
 
-.dashboard-container {
+.dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  padding: 20px;
-  flex: 1;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+  margin-top: 25px;
+}
+
+.internet-speed-card {
+  grid-column: 1 / -1;
 }
 
 .dashboard-card {
-  background-color: #3a3f4b;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+  overflow: hidden;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
 .dashboard-card h2 {
   margin-top: 0;
-  border-bottom: 1px solid #555;
-  padding-bottom: 10px;
   font-size: 1.5rem;
+  color: #2c3e50;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+}
+
+.dashboard-card h2 svg {
+  margin-right: 12px;
+}
+
+.dashboard-card h3 {
+  font-size: 1.2rem;
+  color: #555;
+  margin: 18px 0 12px;
 }
 
 .metric {
   display: flex;
   justify-content: space-between;
-  margin: 10px 0;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.metric:last-child {
+  border-bottom: none;
 }
 
 .metric-label {
-  font-weight: bold;
+  font-weight: 500;
+  color: #555;
 }
 
 .metric-value {
-  text-align: right;
+  font-weight: 600;
+  color: #2c3e50;
+  padding: 6px 12px;
+  border-radius: 4px;
+  background-color: #f8f9fa;
+}
+
+.metric-value.online {
+  color: #27ae60;
+  background-color: rgba(39, 174, 96, 0.1);
+}
+
+.metric-value.offline {
+  color: #e74c3c;
+  background-color: rgba(231, 76, 60, 0.1);
+}
+
+.error-entry {
+  background-color: #fff8f8;
+  border-left: 3px solid #e74c3c;
+  padding: 12px 18px;
+  margin-bottom: 12px;
+  border-radius: 4px;
+}
+
+.error-time {
+  font-size: 0.85rem;
+  color: #777;
+  margin-bottom: 6px;
+}
+
+.error-message {
+  color: #333;
+  font-weight: 500;
+}
+
+/* Internet Speed Component Styles */
+.speed-indicators {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.speed-indicator {
+  text-align: center;
+  flex: 1;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  margin: 0 10px;
+}
+
+.speed-indicator:first-child {
+  margin-left: 0;
+}
+
+.speed-indicator:last-child {
+  margin-right: 0;
+}
+
+.speed-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.speed-value span.excellent {
+  color: #27ae60;
+}
+
+.speed-value span.good {
+  color: #2ecc71;
+}
+
+.speed-value span.average {
+  color: #f39c12;
+}
+
+.speed-value span.poor {
+  color: #e74c3c;
+}
+
+.speed-label {
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  font-size: 0.9rem;
+}
+
+.history-table th,
+.history-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.history-table th {
+  font-weight: 600;
+  color: #555;
+}
+
+.speed-test-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.2s;
+}
+
+.speed-test-button:hover {
+  background-color: #2980b9;
+}
+
+.speed-test-button:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+.last-tested {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.loading-spinner {
+  width: 30px;
+  height: 30px;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top-color: #3498db;
+  animation: spin 1s ease-in-out infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .App-footer {
-  padding: 15px;
-  border-top: 1px solid #444;
+  margin-top: 40px;
+  padding: 20px;
+  text-align: center;
+  color: #666;
   font-size: 0.9rem;
 }
 
 /* Progress bar styles */
 .progress-bar {
-  height: 10px;
+  height: 12px;
   background-color: #555;
-  border-radius: 5px;
-  margin: 5px 0;
+  border-radius: 6px;
+  margin: 6px 0;
   overflow: hidden;
 }
 
 .progress-fill {
   height: 100%;
-  border-radius: 5px;
+  border-radius: 6px;
   transition: width 0.3s ease;
 }
 
@@ -112,25 +312,31 @@
   background-color: #f44336;
 }
 
-/* Error log styles */
-.error-entry {
-  padding: 10px;
-  margin: 5px 0;
-  border-radius: 4px;
-  background-color: rgba(244, 67, 54, 0.1);
-  border-left: 3px solid #f44336;
-  text-align: left;
-}
-
-.error-time {
-  font-size: 0.8rem;
-  color: #aaa;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .dashboard-container {
+@media (max-width: 992px) {
+  .dashboard-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .internet-speed-card {
+    grid-column: auto;
+  }
+  
+  .speed-indicators {
+    flex-direction: column;
+  }
+  
+  .speed-indicator {
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .App-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .dashboard-card h2 {
+    font-size: 1.3rem;
   }
 }
 
