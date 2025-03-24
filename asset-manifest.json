@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/NetworkDG/static/css/main.73795c37.css",
+    "main.js": "/NetworkDG/static/js/main.75c400dd.js",
+    "static/js/453.0e349501.chunk.js": "/NetworkDG/static/js/453.0e349501.chunk.js",
+    "index.html": "/NetworkDG/index.html",
+    "main.73795c37.css.map": "/NetworkDG/static/css/main.73795c37.css.map",
+    "main.75c400dd.js.map": "/NetworkDG/static/js/main.75c400dd.js.map",
+    "453.0e349501.chunk.js.map": "/NetworkDG/static/js/453.0e349501.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.73795c37.css",
+    "static/js/main.75c400dd.js"
+  ]
+}
